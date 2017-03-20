@@ -323,35 +323,39 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `lovelace_db_schema`.`policy`
+-- Table `lovelace_db_schema`.`document_type`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `lovelace_db_schema`.`policy` ;
+DROP TABLE IF EXISTS `lovelace_db_schema`.`document_type` ;
 
-CREATE TABLE IF NOT EXISTS `lovelace_db_schema`.`policy` (
-  `user_dce` INT NOT NULL,
-  `encoded_file` BLOB NULL,
-  PRIMARY KEY (`user_dce`),
-  CONSTRAINT `user_dce`
-    FOREIGN KEY (`user_dce`)
-    REFERENCES `lovelace_db_schema`.`user` (`user_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+CREATE TABLE IF NOT EXISTS `lovelace_db_schema`.`document_type` (
+  `document_type_id` INT NOT NULL,
+  `document_name` VARCHAR(45) NULL,
+  `template` BLOB NULL,
+  PRIMARY KEY (`document_type_id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `lovelace_db_schema`.`bug_reports`
+-- Table `lovelace_db_schema`.`checkout_document`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `lovelace_db_schema`.`bug_reports` ;
+DROP TABLE IF EXISTS `lovelace_db_schema`.`checkout_document` ;
 
-CREATE TABLE IF NOT EXISTS `lovelace_db_schema`.`bug_reports` (
-  `report_id` INT NOT NULL,
-  `time_of_bug` DATE NULL,
-  `reporter_name` VARCHAR(45) NULL,
-  `description` LONGTEXT NULL,
-  `marked_read` TINYINT(1) NULL,
-  `resolved` TINYINT(1) NULL,
-  PRIMARY KEY (`report_id`))
+CREATE TABLE IF NOT EXISTS `lovelace_db_schema`.`checkout_document` (
+  `checkout_id` INT NOT NULL,
+  `document_type_id` INT NULL,
+  `document` VARCHAR(45) NULL,
+  PRIMARY KEY (`checkout_id`),
+  INDEX `document_type_id_idx` (`document_type_id` ASC),
+  CONSTRAINT `checkout_id`
+    FOREIGN KEY (`checkout_id`)
+    REFERENCES `lovelace_db_schema`.`checkout_log` (`checkout_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `document_type_id`
+    FOREIGN KEY (`document_type_id`)
+    REFERENCES `lovelace_db_schema`.`document_type` (`document_type_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
