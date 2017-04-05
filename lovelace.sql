@@ -66,68 +66,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `lovelace_db`.`permission`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `lovelace_db`.`permission` ;
-
-CREATE TABLE IF NOT EXISTS `lovelace_db`.`permission` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
-  `status` CHAR(1) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `lovelace_db`.`user_permission_override`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `lovelace_db`.`user_permission_override` ;
-
-CREATE TABLE IF NOT EXISTS `lovelace_db`.`user_permission_override` (
-  `user_id` INT NOT NULL,
-  `permission_id` INT NOT NULL,
-  `status` CHAR(1) NULL,
-  `status_start` DATETIME NULL,
-  `status_stop` DATETIME NULL,
-  PRIMARY KEY (`user_id`, `permission_id`),
-  INDEX `permission_id_idx` (`permission_id` ASC),
-  CONSTRAINT `user_id`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `lovelace_db`.`user` (`user_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `permission_id`
-    FOREIGN KEY (`permission_id`)
-    REFERENCES `lovelace_db`.`permission` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `lovelace_db`.`role_permission`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `lovelace_db`.`role_permission` ;
-
-CREATE TABLE IF NOT EXISTS `lovelace_db`.`role_permission` (
-  `role_permission_id` INT NOT NULL,
-  `role_id` INT NOT NULL,
-  PRIMARY KEY (`role_permission_id`, `role_id`),
-  INDEX `role_id_idx` (`role_id` ASC),
-  CONSTRAINT `role_permission_id`
-    FOREIGN KEY (`role_permission_id`)
-    REFERENCES `lovelace_db`.`permission` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `role_id`
-    FOREIGN KEY (`role_id`)
-    REFERENCES `lovelace_db`.`role` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `lovelace_db`.`category`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `lovelace_db`.`category` ;
@@ -160,6 +98,7 @@ CREATE TABLE IF NOT EXISTS `lovelace_db`.`item_archetype` (
   `name` VARCHAR(45) NULL,
   `description` VARCHAR(100) NULL,
   `manufacturer` VARCHAR(45) NULL,
+  `image_path` VARCHAR(45) NULL,
   PRIMARY KEY (`item_archetype_id`),
   INDEX `category_id_idx` (`category_id` ASC),
   CONSTRAINT `category_id`
@@ -205,7 +144,6 @@ CREATE TABLE IF NOT EXISTS `lovelace_db`.`checkout_log` (
   `checked_out_by_id` INT NULL,
   `checked_in_by_id` INT NULL,
   `checked_out` DATETIME NULL,
-  `due_back` DATETIME NULL,
   `returned` DATETIME NULL,
   PRIMARY KEY (`checkout_id`),
   INDEX `checked_out_to_id_idx` (`checked_out_to_id` ASC),
@@ -301,11 +239,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `lovelace_db`.`sys_user`
+-- Table `lovelace_db`.`cage_user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `lovelace_db`.`sys_user` ;
+DROP TABLE IF EXISTS `lovelace_db`.`cage_user` ;
 
-CREATE TABLE IF NOT EXISTS `lovelace_db`.`sys_user` (
+CREATE TABLE IF NOT EXISTS `lovelace_db`.`cage_user` (
   `user_id` INT NOT NULL,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
@@ -409,57 +347,6 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `lovelace_db`.`permission`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `lovelace_db`;
-INSERT INTO `lovelace_db`.`permission` (`id`, `name`, `status`) VALUES (0, 'none', 'N');
-INSERT INTO `lovelace_db`.`permission` (`id`, `name`, `status`) VALUES (1, 'basic', 'B');
-INSERT INTO `lovelace_db`.`permission` (`id`, `name`, `status`) VALUES (2, 'labbie', 'L');
-INSERT INTO `lovelace_db`.`permission` (`id`, `name`, `status`) VALUES (3, 'admin', 'A');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `lovelace_db`.`user_permission_override`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `lovelace_db`;
-INSERT INTO `lovelace_db`.`user_permission_override` (`user_id`, `permission_id`, `status`, `status_start`, `status_stop`) VALUES (1, 1, 'N', '2017-01-06 08:00:00', NULL);
-INSERT INTO `lovelace_db`.`user_permission_override` (`user_id`, `permission_id`, `status`, `status_start`, `status_stop`) VALUES (2, 0, 'N', '2017-01-06 08:00:00', NULL);
-INSERT INTO `lovelace_db`.`user_permission_override` (`user_id`, `permission_id`, `status`, `status_start`, `status_stop`) VALUES (3, 1, 'N', '2016-01-06 08:00:00', NULL);
-INSERT INTO `lovelace_db`.`user_permission_override` (`user_id`, `permission_id`, `status`, `status_start`, `status_stop`) VALUES (4, 1, 'N', '2017-01-06 08:00:00', NULL);
-INSERT INTO `lovelace_db`.`user_permission_override` (`user_id`, `permission_id`, `status`, `status_start`, `status_stop`) VALUES (5, 2, 'N', '2017-02-06 08:00:00', NULL);
-INSERT INTO `lovelace_db`.`user_permission_override` (`user_id`, `permission_id`, `status`, `status_start`, `status_stop`) VALUES (6, 3, 'N', '2015-01-06 08:00:00', NULL);
-INSERT INTO `lovelace_db`.`user_permission_override` (`user_id`, `permission_id`, `status`, `status_start`, `status_stop`) VALUES (7, 1, 'N', '2017-01-06 08:00:00', NULL);
-INSERT INTO `lovelace_db`.`user_permission_override` (`user_id`, `permission_id`, `status`, `status_start`, `status_stop`) VALUES (8, 2, 'N', '2017-01-12 08:00:00', NULL);
-INSERT INTO `lovelace_db`.`user_permission_override` (`user_id`, `permission_id`, `status`, `status_start`, `status_stop`) VALUES (9, 1, 'N', '2017-01-06 08:00:00', NULL);
-INSERT INTO `lovelace_db`.`user_permission_override` (`user_id`, `permission_id`, `status`, `status_start`, `status_stop`) VALUES (10, 1, 'N', '2017-01-06 08:00:00', NULL);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `lovelace_db`.`role_permission`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `lovelace_db`;
-INSERT INTO `lovelace_db`.`role_permission` (`role_permission_id`, `role_id`) VALUES (1, 4);
-INSERT INTO `lovelace_db`.`role_permission` (`role_permission_id`, `role_id`) VALUES (2, 4);
-INSERT INTO `lovelace_db`.`role_permission` (`role_permission_id`, `role_id`) VALUES (3, 3);
-INSERT INTO `lovelace_db`.`role_permission` (`role_permission_id`, `role_id`) VALUES (4, 3);
-INSERT INTO `lovelace_db`.`role_permission` (`role_permission_id`, `role_id`) VALUES (5, 2);
-INSERT INTO `lovelace_db`.`role_permission` (`role_permission_id`, `role_id`) VALUES (6, 2);
-INSERT INTO `lovelace_db`.`role_permission` (`role_permission_id`, `role_id`) VALUES (7, 1);
-INSERT INTO `lovelace_db`.`role_permission` (`role_permission_id`, `role_id`) VALUES (8, 4);
-INSERT INTO `lovelace_db`.`role_permission` (`role_permission_id`, `role_id`) VALUES (9, 1);
-INSERT INTO `lovelace_db`.`role_permission` (`role_permission_id`, `role_id`) VALUES (10, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
 -- Data for table `lovelace_db`.`category`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -477,10 +364,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `lovelace_db`;
-INSERT INTO `lovelace_db`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`) VALUES (1, 1, 'iphone', 'an apple iphone 6s', 'apple');
-INSERT INTO `lovelace_db`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`) VALUES (2, 1, 'android', 'galaxy note 7', 'samsung');
-INSERT INTO `lovelace_db`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`) VALUES (3, 3, 'ipad', 'ipad 2', 'apple');
-INSERT INTO `lovelace_db`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`) VALUES (4, 2, 'MAC adapter', 'adapter for macbooks to go from hdmi to dvi', 'apple');
+INSERT INTO `lovelace_db`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`, `image_path`) VALUES (1, 1, 'iphone', 'an apple iphone 6s', 'apple', NULL);
+INSERT INTO `lovelace_db`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`, `image_path`) VALUES (2, 1, 'android', 'galaxy note 7', 'samsung', NULL);
+INSERT INTO `lovelace_db`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`, `image_path`) VALUES (3, 3, 'ipad', 'ipad 2', 'apple', NULL);
+INSERT INTO `lovelace_db`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`, `image_path`) VALUES (4, 2, 'MAC adapter', 'adapter for macbooks to go from hdmi to dvi', 'apple', NULL);
 
 COMMIT;
 
@@ -509,11 +396,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `lovelace_db`;
-INSERT INTO `lovelace_db`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `due_back`, `returned`) VALUES (1, 5, 1, 5, 5, '2017-03-16 12:34:23', '2017-03-16 4:00:00', '2017-03-16 2:12:23');
-INSERT INTO `lovelace_db`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `due_back`, `returned`) VALUES (2, 98, 2, 5, 8, '2017-03-18 10:34:23', '2017-03-18 4:00:00', '2017-03-18 12:52:23');
-INSERT INTO `lovelace_db`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `due_back`, `returned`) VALUES (3, 5, 7, 8, 8, '2017-03-19 01:34:23', '2017-03-19 4:00:00', '2017-03-19 2:42:23');
-INSERT INTO `lovelace_db`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `due_back`, `returned`) VALUES (4, 73, 2, 8, 5, '2017-03-19 02:34:23', '2017-03-19 4:00:00', '2017-03-19 3:11:54');
-INSERT INTO `lovelace_db`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `due_back`, `returned`) VALUES (5, 65, 7, 8, 8, '2017-03-21 03:12:11', '2017-03-21 4:00:00', '2017-03-21 3:51:03');
+INSERT INTO `lovelace_db`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (1, 5, 1, 5, 5, '2017-03-16 12:34:23', '2017-03-16 2:12:23');
+INSERT INTO `lovelace_db`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (2, 98, 2, 5, 8, '2017-03-18 10:34:23', '2017-03-18 12:52:23');
+INSERT INTO `lovelace_db`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (3, 5, 7, 8, 8, '2017-03-19 01:34:23', '2017-03-19 2:42:23');
+INSERT INTO `lovelace_db`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (4, 73, 2, 8, 5, '2017-03-19 02:34:23', '2017-03-19 3:11:54');
+INSERT INTO `lovelace_db`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (5, 65, 7, 8, 8, '2017-03-21 03:12:11', '2017-03-21 3:51:03');
 
 COMMIT;
 
@@ -557,20 +444,20 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `lovelace_db`.`sys_user`
+-- Data for table `lovelace_db`.`cage_user`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `lovelace_db`;
-INSERT INTO `lovelace_db`.`sys_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (1, 'Barclay', 'Garner', 54286-6638, 7825);
-INSERT INTO `lovelace_db`.`sys_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (2, 'Bruno', 'Wooten', 83968-4833, 7986);
-INSERT INTO `lovelace_db`.`sys_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (3, 'William', 'Prince', 58431-0614, 4771);
-INSERT INTO `lovelace_db`.`sys_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (4, 'Phelan', 'Hopkins', 75321-6766, 3024);
-INSERT INTO `lovelace_db`.`sys_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (5, 'Summer', 'Boone', 43421-8849, 1931);
-INSERT INTO `lovelace_db`.`sys_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (6, 'Theodore', 'Mayo', 66445-3805, 7483);
-INSERT INTO `lovelace_db`.`sys_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (7, 'Amber', 'Osborn', 78804-3278, 4502);
-INSERT INTO `lovelace_db`.`sys_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (8, 'Avram', 'Vinson', 68312-0186, 4230);
-INSERT INTO `lovelace_db`.`sys_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (9, 'Lawrence', 'Joseph', 14052-4189, 3290);
-INSERT INTO `lovelace_db`.`sys_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (10, 'Kristen', 'Frederick', 215010-9722, 5904);
+INSERT INTO `lovelace_db`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (1, 'Barclay', 'Garner', 54286-6638, 7825);
+INSERT INTO `lovelace_db`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (2, 'Bruno', 'Wooten', 83968-4833, 7986);
+INSERT INTO `lovelace_db`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (3, 'William', 'Prince', 58431-0614, 4771);
+INSERT INTO `lovelace_db`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (4, 'Phelan', 'Hopkins', 75321-6766, 3024);
+INSERT INTO `lovelace_db`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (5, 'Summer', 'Boone', 43421-8849, 1931);
+INSERT INTO `lovelace_db`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (6, 'Theodore', 'Mayo', 66445-3805, 7483);
+INSERT INTO `lovelace_db`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (7, 'Amber', 'Osborn', 78804-3278, 4502);
+INSERT INTO `lovelace_db`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (8, 'Avram', 'Vinson', 68312-0186, 4230);
+INSERT INTO `lovelace_db`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (9, 'Lawrence', 'Joseph', 14052-4189, 3290);
+INSERT INTO `lovelace_db`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (10, 'Kristen', 'Frederick', 215010-9722, 5904);
 
 COMMIT;
 
