@@ -276,7 +276,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `equipment_inventory`.`checkout_document` ;
 
 CREATE TABLE IF NOT EXISTS `equipment_inventory`.`checkout_document` (
-  `checkout_id` INT NOT NULL,
+  `checkout_id` INT NOT NULL AUTO_INCREMENT,
   `document_type_id` INT NULL,
   `document` VARCHAR(45) NULL,
   PRIMARY KEY (`checkout_id`),
