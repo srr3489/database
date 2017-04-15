@@ -116,8 +116,8 @@ DROP TABLE IF EXISTS `equipment_inventory`.`item` ;
 CREATE TABLE IF NOT EXISTS `equipment_inventory`.`item` (
   `item_id` INT NOT NULL,
   `archetype_id` INT NULL,
-  `barcode` INT NULL,
-  `rit_barcode` INT NULL,
+  `barcode` VARCHAR(60) NULL,
+  `rit_barcode` VARCHAR(60) NULL,
   `status` CHAR(1) NULL,
   `status_start` DATETIME NULL,
   `status_stop` DATETIME NULL,
@@ -246,8 +246,8 @@ CREATE TABLE IF NOT EXISTS `equipment_inventory`.`cage_user` (
   `user_id` INT NOT NULL,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
-  `university_id` INT NULL,
-  `pin` INT(4) NULL,
+  `university_id` VARCHAR(20) NULL,
+  `pin` VARCHAR(96) NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `sys_user_id`
     FOREIGN KEY (`user_id`)
@@ -310,6 +310,8 @@ INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (7, 'ACO
 INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (8, 'AFV6160');
 INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (9, 'LFJ1173');
 INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (10, 'LTF4558');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (11, 'PRP2986');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (12, 'BJM4477');
 
 COMMIT;
 
@@ -319,9 +321,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `equipment_inventory`;
-INSERT INTO `equipment_inventory`.`role` (`id`, `name`, `status`) VALUES (1, 'student', 'S');
-INSERT INTO `equipment_inventory`.`role` (`id`, `name`, `status`) VALUES (2, 'faculty', 'F');
-INSERT INTO `equipment_inventory`.`role` (`id`, `name`, `status`) VALUES (3, 'labbie', 'L');
+INSERT INTO `equipment_inventory`.`role` (`id`, `name`, `status`) VALUES (1, 'student', 'A');
+INSERT INTO `equipment_inventory`.`role` (`id`, `name`, `status`) VALUES (2, 'faculty', 'A');
+INSERT INTO `equipment_inventory`.`role` (`id`, `name`, `status`) VALUES (3, 'lab_assistant', 'A');
 INSERT INTO `equipment_inventory`.`role` (`id`, `name`, `status`) VALUES (4, 'admin', 'A');
 
 COMMIT;
@@ -332,16 +334,19 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `equipment_inventory`;
-INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (1, 1, 'N', '2017-01-06 08:00:00', NULL);
-INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (2, 1, 'N', '2017-01-06 08:00:00', NULL);
-INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (3, 2, 'N', '2016-01-06 08:00:00', NULL);
-INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (4, 2, 'N', '2016-01-06 08:00:00', NULL);
-INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (5, 3, 'N', '2017-02-06 08:00:00', NULL);
-INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (6, 4, 'N', '2015-01-06 08:00:00', NULL);
-INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (7, 1, 'N', '2017-01-06 08:00:00', NULL);
-INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (8, 3, 'N', '2017-01-12 08:00:00', NULL);
-INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (9, 1, 'N', '2017-01-06 08:00:00', NULL);
-INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (10, 1, 'N', '2017-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (1, 1, 'A', '2017-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (2, 1, 'A', '2017-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (3, 2, 'A', '2016-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (4, 2, 'A', '2016-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (5, 3, 'A', '2017-02-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (6, 4, 'A', '2015-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (7, 1, 'A', '2017-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (8, 3, 'A', '2017-01-12 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (9, 1, 'A', '2017-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (10, 1, 'A', '2017-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (11, 3, 'A', '2017-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (11, 4, 'A', '2017-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (12, 3, 'A', '2017-01-06 08:00:00', NULL);
 
 COMMIT;
 
@@ -351,10 +356,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `equipment_inventory`;
-INSERT INTO `equipment_inventory`.`category` (`category_id`, `name`, `parent_id`, `status`, `status_start`, `status_stop`) VALUES (1, 'phone', 1, 'N', '2017-01-06 08:00:00', NULL);
-INSERT INTO `equipment_inventory`.`category` (`category_id`, `name`, `parent_id`, `status`, `status_start`, `status_stop`) VALUES (2, 'adapter', NULL, 'N', '2017-01-06 08:00:00', NULL);
-INSERT INTO `equipment_inventory`.`category` (`category_id`, `name`, `parent_id`, `status`, `status_start`, `status_stop`) VALUES (3, 'tablet', 1, 'N', '2016-01-06 08:00:00', NULL);
-INSERT INTO `equipment_inventory`.`category` (`category_id`, `name`, `parent_id`, `status`, `status_start`, `status_stop`) VALUES (4, 'other', NULL, 'N', '2016-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`category` (`category_id`, `name`, `parent_id`, `status`, `status_start`, `status_stop`) VALUES (1, 'phone', 1, 'A', '2017-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`category` (`category_id`, `name`, `parent_id`, `status`, `status_start`, `status_stop`) VALUES (2, 'adapter', NULL, 'A', '2017-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`category` (`category_id`, `name`, `parent_id`, `status`, `status_start`, `status_stop`) VALUES (3, 'tablet', 1, 'A', '2016-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`category` (`category_id`, `name`, `parent_id`, `status`, `status_start`, `status_stop`) VALUES (4, 'other', NULL, 'A', '2016-01-06 08:00:00', NULL);
 
 COMMIT;
 
@@ -377,16 +382,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `equipment_inventory`;
-INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (2, 1, 12345-6789, NULL, 'A', '2017-03-19 02:34:34', NULL);
-INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (5, 3, 23422-3454, NULL, 'A', '2017-03-16 04:12:12', NULL);
-INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (57, 3, 23231-3453, NULL, 'U', '2017-03-19 01:21:34', '2017-03-21 04:00:00 ');
-INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (73, 4, 54642-2345, NULL, 'A', '2017-03-10 12:04:04 ', NULL);
-INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (1, 2, 67575-3454, NULL, 'U', '2017-03-08 02:34:34', '2017-03-21 05:00:00');
-INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (98, 2, 43534-2223, NULL, 'A', '2017-03-10 10:03:11', NULL);
-INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (23, 5, 13536-2345, 99322-2342, 'U', '2017-03-10 02:34:34', '2017-03-21 04:00:00');
-INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (65, 5, 54642-6573, 99322-2333, 'A', '2017-03-07 09:33:31', NULL);
-INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (22, 3, 23222-1111, NULL, 'A', '2017-03-06 09:02:03', NULL);
-INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (44, 3, 23423-2343, NULL, 'A', '2017-03-07 02:11:24', NULL);
+INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (2, 1, '12345-6789', NULL, 'A', '2017-03-19 02:34:34', NULL);
+INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (5, 3, '23422-3454', NULL, 'A', '2017-03-16 04:12:12', NULL);
+INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (57, 3, '23231-3453', NULL, 'A', '2017-03-19 01:21:34', '2017-03-21 04:00:00 ');
+INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (73, 4, '54642-2345', NULL, 'I', '2017-03-10 12:04:04 ', NULL);
+INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (1, 2, '67575-3454', NULL, 'I', '2017-03-08 02:34:34', '2017-03-21 05:00:00');
+INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (98, 2, '43534-2223', NULL, 'A', '2017-03-10 10:03:11', NULL);
+INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (23, 5, '13536-2345', '99322-2342', 'I', '2017-03-10 02:34:34', '2017-03-21 04:00:00');
+INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (65, 5, '54642-6573', '99322-2333', 'A', '2017-03-07 09:33:31', NULL);
+INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (22, 3, '23222-1111', NULL, 'A', '2017-03-06 09:02:03', NULL);
+INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (44, 3, '23423-2343', NULL, 'A', '2017-03-07 02:11:24', NULL);
 
 COMMIT;
 
@@ -398,9 +403,9 @@ START TRANSACTION;
 USE `equipment_inventory`;
 INSERT INTO `equipment_inventory`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (1, 5, 1, 5, 5, '2017-03-16 12:34:23', '2017-03-16 2:12:23');
 INSERT INTO `equipment_inventory`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (2, 98, 2, 5, 8, '2017-03-18 10:34:23', '2017-03-18 12:52:23');
-INSERT INTO `equipment_inventory`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (3, 5, 7, 8, 8, '2017-03-19 01:34:23', '2017-03-19 2:42:23');
+INSERT INTO `equipment_inventory`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (3, 5, 7, 8, NULL, '2017-03-19 01:34:23', NULL);
 INSERT INTO `equipment_inventory`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (4, 73, 2, 8, 5, '2017-03-19 02:34:23', '2017-03-19 3:11:54');
-INSERT INTO `equipment_inventory`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (5, 65, 7, 8, 8, '2017-03-21 03:12:11', '2017-03-21 3:51:03');
+INSERT INTO `equipment_inventory`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (5, 65, 7, 8, NULL, '2017-03-21 03:12:11', NULL);
 
 COMMIT;
 
@@ -448,16 +453,18 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `equipment_inventory`;
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (1, 'Barclay', 'Garner', 54286-6638, 7825);
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (2, 'Bruno', 'Wooten', 83968-4833, 7986);
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (3, 'William', 'Prince', 58431-0614, 4771);
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (4, 'Phelan', 'Hopkins', 75321-6766, 3024);
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (5, 'Summer', 'Boone', 43421-8849, 1931);
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (6, 'Theodore', 'Mayo', 66445-3805, 7483);
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (7, 'Amber', 'Osborn', 78804-3278, 4502);
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (8, 'Avram', 'Vinson', 68312-0186, 4230);
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (9, 'Lawrence', 'Joseph', 14052-4189, 3290);
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (10, 'Kristen', 'Frederick', 215010-9722, 5904);
+INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (1, 'Barclay', 'Garner', '54286-6638', '7825');
+INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (2, 'Bruno', 'Wooten', '83968-4833', '7986');
+INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (3, 'William', 'Prince', '58431-0614', '4771');
+INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (4, 'Phelan', 'Hopkins', '75321-6766', '3024');
+INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (5, 'Summer', 'Boone', '43421-8849', '1931');
+INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (6, 'Theodore', 'Mayo', '66445-3805', '7483');
+INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (7, 'Amber', 'Osborn', '78804-3278', '4502');
+INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (8, 'Avram', 'Vinson', '68312-0186', '4230');
+INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (9, 'Lawrence', 'Joseph', '14052-4189', '3290');
+INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (10, 'Kristen', 'Frederick', '215010-9722', '5904');
+INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (11, 'Patrick', 'Putnam', '123456-1234', '$argon2i$v=19$m=65536,t=4,p=1$VIyGutAWGNmYMtciGslXOQ$mP27AwBn5MFdp0EmrjLFB/MCHOeTa1fcDC+qlpPJ4Xk');
+INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (12, 'Brendan', 'McDonald', '987654-9876', '$argon2i$v=19$m=65536,t=4,p=1$Qakz+ooMLmoUAiUNpX4LBA$p3AGs9mONRkRxncaGs+QPGlnhQ8aAh464tD/LYQn/S0');
 
 COMMIT;
 
