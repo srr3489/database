@@ -238,16 +238,18 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `equipment_inventory`.`cage_user`
+-- Table `equipment_inventory`.`employee`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `equipment_inventory`.`cage_user` ;
+DROP TABLE IF EXISTS `equipment_inventory`.`employee` ;
 
-CREATE TABLE IF NOT EXISTS `equipment_inventory`.`cage_user` (
+CREATE TABLE IF NOT EXISTS `equipment_inventory`.`employee` (
   `user_id` INT NOT NULL,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
   `university_id` VARCHAR(20) NULL,
   `pin` VARCHAR(96) NULL,
+  `username` VARCHAR(20) NULL,
+  `password` VARCHAR(96) NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `sys_user_id`
     FOREIGN KEY (`user_id`)
@@ -449,22 +451,22 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `equipment_inventory`.`cage_user`
+-- Data for table `equipment_inventory`.`employee`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `equipment_inventory`;
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (1, 'Barclay', 'Garner', '54286-6638', '7825');
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (2, 'Bruno', 'Wooten', '83968-4833', '7986');
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (3, 'William', 'Prince', '58431-0614', '4771');
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (4, 'Phelan', 'Hopkins', '75321-6766', '3024');
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (5, 'Summer', 'Boone', '43421-8849', '1931');
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (6, 'Theodore', 'Mayo', '66445-3805', '7483');
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (7, 'Amber', 'Osborn', '78804-3278', '4502');
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (8, 'Avram', 'Vinson', '68312-0186', '4230');
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (9, 'Lawrence', 'Joseph', '14052-4189', '3290');
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (10, 'Kristen', 'Frederick', '215010-9722', '5904');
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (11, 'Patrick', 'Putnam', '123456-1234', '$argon2i$v=19$m=65536,t=4,p=1$VIyGutAWGNmYMtciGslXOQ$mP27AwBn5MFdp0EmrjLFB/MCHOeTa1fcDC+qlpPJ4Xk');
-INSERT INTO `equipment_inventory`.`cage_user` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (12, 'Brendan', 'McDonald', '987654-9876', '$argon2i$v=19$m=65536,t=4,p=1$Qakz+ooMLmoUAiUNpX4LBA$p3AGs9mONRkRxncaGs+QPGlnhQ8aAh464tD/LYQn/S0');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (1, 'Barclay', 'Garner', '54286-6638', '7825');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (2, 'Bruno', 'Wooten', '83968-4833', '7986');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (3, 'William', 'Prince', '58431-0614', '4771');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (4, 'Phelan', 'Hopkins', '75321-6766', '3024');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (5, 'Summer', 'Boone', '43421-8849', '1931');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (6, 'Theodore', 'Mayo', '66445-3805', '7483');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (7, 'Amber', 'Osborn', '78804-3278', '4502');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (8, 'Avram', 'Vinson', '68312-0186', '4230');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (9, 'Lawrence', 'Joseph', '14052-4189', '3290');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (10, 'Kristen', 'Frederick', '215010-9722', '5904');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`, `username`, `password`) VALUES (11, 'Patrick', 'Putnam', '123456-1234', '$argon2i$v=19$m=65536,t=4,p=1$VIyGutAWGNmYMtciGslXOQ$mP27AwBn5MFdp0EmrjLFB/MCHOeTa1fcDC+qlpPJ4Xk', 'test1234', '$argon2i$v=19$m=65536,t=4,p=1$VIyGutAWGNmYMtciGslXOQ$mP27AwBn5MFdp0EmrjLFB/MCHOeTa1fcDC+qlpPJ4Xk');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`, `username`, `password`) VALUES (12, 'Brendan', 'McDonald', '987654-9876', '$argon2i$v=19$m=65536,t=4,p=1$Qakz+ooMLmoUAiUNpX4LBA$p3AGs9mONRkRxncaGs+QPGlnhQ8aAh464tD/LYQn/S0', 'test9876', '$argon2i$v=19$m=65536,t=4,p=1$Qakz+ooMLmoUAiUNpX4LBA$p3AGs9mONRkRxncaGs+QPGlnhQ8aAh464tD/LYQn/S0');
 
 COMMIT;
 
