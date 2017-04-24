@@ -267,7 +267,6 @@ DROP TABLE IF EXISTS `equipment_inventory`.`employee` ;
 CREATE TABLE IF NOT EXISTS `equipment_inventory`.`employee` (
   `user_id` INT NOT NULL,
   `pin` VARCHAR(96) NULL,
-  `username` VARCHAR(20) NULL,
   `password` VARCHAR(96) NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `sys_user_id`
@@ -501,8 +500,8 @@ INSERT INTO `equipment_inventory`.`employee` (`user_id`, `pin`) VALUES (7, '4502
 INSERT INTO `equipment_inventory`.`employee` (`user_id`, `pin`) VALUES (8, '4230');
 INSERT INTO `equipment_inventory`.`employee` (`user_id`, `pin`) VALUES (9, '3290');
 INSERT INTO `equipment_inventory`.`employee` (`user_id`, `pin`) VALUES (10,'5904');
-INSERT INTO `equipment_inventory`.`employee` (`user_id`, `pin`, `username`, `password`) VALUES (11, '$argon2i$v=19$m=65536,t=4,p=1$VIyGutAWGNmYMtciGslXOQ$mP27AwBn5MFdp0EmrjLFB/MCHOeTa1fcDC+qlpPJ4Xk', 'test1234', '$argon2i$v=19$m=65536,t=4,p=1$VIyGutAWGNmYMtciGslXOQ$mP27AwBn5MFdp0EmrjLFB/MCHOeTa1fcDC+qlpPJ4Xk');
-INSERT INTO `equipment_inventory`.`employee` (`user_id`, `pin`, `username`, `password`) VALUES (12, '$argon2i$v=19$m=65536,t=4,p=1$Qakz+ooMLmoUAiUNpX4LBA$p3AGs9mONRkRxncaGs+QPGlnhQ8aAh464tD/LYQn/S0', 'test9876', '$argon2i$v=19$m=65536,t=4,p=1$Qakz+ooMLmoUAiUNpX4LBA$p3AGs9mONRkRxncaGs+QPGlnhQ8aAh464tD/LYQn/S0');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `pin`, `password`) VALUES (11, '$argon2i$v=19$m=65536,t=4,p=1$VIyGutAWGNmYMtciGslXOQ$mP27AwBn5MFdp0EmrjLFB/MCHOeTa1fcDC+qlpPJ4Xk', '$argon2i$v=19$m=65536,t=4,p=1$VIyGutAWGNmYMtciGslXOQ$mP27AwBn5MFdp0EmrjLFB/MCHOeTa1fcDC+qlpPJ4Xk');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `pin`, `password`) VALUES (12, '$argon2i$v=19$m=65536,t=4,p=1$Qakz+ooMLmoUAiUNpX4LBA$p3AGs9mONRkRxncaGs+QPGlnhQ8aAh464tD/LYQn/S0', '$argon2i$v=19$m=65536,t=4,p=1$Qakz+ooMLmoUAiUNpX4LBA$p3AGs9mONRkRxncaGs+QPGlnhQ8aAh464tD/LYQn/S0');
 
 COMMIT;
 
