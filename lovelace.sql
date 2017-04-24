@@ -21,6 +21,10 @@ DROP TABLE IF EXISTS `equipment_inventory`.`user` ;
 CREATE TABLE IF NOT EXISTS `equipment_inventory`.`user` (
   `user_id` INT NOT NULL,
   `user_dce` VARCHAR(45) NULL,
+  `first_name` VARCHAR(45) NULL,
+  `last_name` VARCHAR(45) NULL,
+  `major` VARCHAR(96) NULL,
+  `university_id` VARCHAR(20) NULL,
   PRIMARY KEY (`user_id`))
 ENGINE = InnoDB;
 
@@ -119,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `equipment_inventory`.`item` (
   `archetype_id` INT NULL,
   `barcode` VARCHAR(60) NULL,
   `rit_barcode` VARCHAR(60) NULL,
-  `serial_number` VARCHAR(60) NULL,
+  `serial` VARCHAR(60) NULL,
   `status` CHAR(1) NULL,
   `status_start` DATETIME NULL,
   `status_stop` DATETIME NULL,
@@ -246,9 +250,6 @@ DROP TABLE IF EXISTS `equipment_inventory`.`employee` ;
 
 CREATE TABLE IF NOT EXISTS `equipment_inventory`.`employee` (
   `user_id` INT NOT NULL,
-  `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
-  `university_id` VARCHAR(20) NULL,
   `pin` VARCHAR(96) NULL,
   `username` VARCHAR(20) NULL,
   `password` VARCHAR(96) NULL,
@@ -304,18 +305,18 @@ GRANT ALL ON equipment_inventory.* TO 'equipment_admin'@'localhost';
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `equipment_inventory`;
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (1, 'BEG3288');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (2, 'BWW6950');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (3, 'WMP8401');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (4, 'PNH6074');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (5, 'SGB7736');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (6, 'TSM2885');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (7, 'ACO6530');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (8, 'AFV6160');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (9, 'LFJ1173');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (10, 'LTF4558');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (11, 'PRP2986');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`) VALUES (12, 'BJM4477');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`) VALUES (1, 'BEG3288', 'Bruno', 'Wooten');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`) VALUES (2, 'BWW6950', 'William', 'Prince');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`) VALUES (3, 'WMP8401', 'a', 'a');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`) VALUES (4, 'PNH6074', 'a', 'a');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`) VALUES (5, 'SGB7736', 'a', 'a');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`) VALUES (6, 'TSM2885', 'a', 'a');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`) VALUES (7, 'ACO6530', 'a', 'a');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`) VALUES (8, 'AFV6160', 'a', 'a');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`) VALUES (9, 'LFJ1173', 'a', 'a');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`) VALUES (10, 'LTF4558', 'a', 'a');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`) VALUES (11, 'PRP2986', 'a', 'a');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`) VALUES (12, 'BJM4477', 'a', 'a');
 
 COMMIT;
 
@@ -457,18 +458,18 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `equipment_inventory`;
-INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (1, 'Barclay', 'Garner', '54286-6638', '7825');
-INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (2, 'Bruno', 'Wooten', '83968-4833', '7986');
-INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (3, 'William', 'Prince', '58431-0614', '4771');
-INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (4, 'Phelan', 'Hopkins', '75321-6766', '3024');
-INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (5, 'Summer', 'Boone', '43421-8849', '1931');
-INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (6, 'Theodore', 'Mayo', '66445-3805', '7483');
-INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (7, 'Amber', 'Osborn', '78804-3278', '4502');
-INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (8, 'Avram', 'Vinson', '68312-0186', '4230');
-INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (9, 'Lawrence', 'Joseph', '14052-4189', '3290');
-INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`) VALUES (10, 'Kristen', 'Frederick', '215010-9722', '5904');
-INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`, `username`, `password`) VALUES (11, 'Patrick', 'Putnam', '123456-1234', '$argon2i$v=19$m=65536,t=4,p=1$VIyGutAWGNmYMtciGslXOQ$mP27AwBn5MFdp0EmrjLFB/MCHOeTa1fcDC+qlpPJ4Xk', 'test1234', '$argon2i$v=19$m=65536,t=4,p=1$VIyGutAWGNmYMtciGslXOQ$mP27AwBn5MFdp0EmrjLFB/MCHOeTa1fcDC+qlpPJ4Xk');
-INSERT INTO `equipment_inventory`.`employee` (`user_id`, `first_name`, `last_name`, `university_id`, `pin`, `username`, `password`) VALUES (12, 'Brendan', 'McDonald', '987654-9876', '$argon2i$v=19$m=65536,t=4,p=1$Qakz+ooMLmoUAiUNpX4LBA$p3AGs9mONRkRxncaGs+QPGlnhQ8aAh464tD/LYQn/S0', 'test9876', '$argon2i$v=19$m=65536,t=4,p=1$Qakz+ooMLmoUAiUNpX4LBA$p3AGs9mONRkRxncaGs+QPGlnhQ8aAh464tD/LYQn/S0');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `university_id`, `pin`) VALUES (1, '54286-6638', '7825');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `university_id`, `pin`) VALUES (2, '83968-4833', '7986');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `university_id`, `pin`) VALUES (3, '58431-0614', '4771');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `university_id`, `pin`) VALUES (4, '75321-6766', '3024');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `university_id`, `pin`) VALUES (5, '43421-8849', '1931');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `university_id`, `pin`) VALUES (6, '66445-3805', '7483');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `university_id`, `pin`) VALUES (7, '78804-3278', '4502');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `university_id`, `pin`) VALUES (8, '68312-0186', '4230');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `university_id`, `pin`) VALUES (9, '14052-4189', '3290');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `university_id`, `pin`) VALUES (10,'215010-9722', '5904');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `university_id`, `pin`, `username`, `password`) VALUES (11, '123456-1234', '$argon2i$v=19$m=65536,t=4,p=1$VIyGutAWGNmYMtciGslXOQ$mP27AwBn5MFdp0EmrjLFB/MCHOeTa1fcDC+qlpPJ4Xk', 'test1234', '$argon2i$v=19$m=65536,t=4,p=1$VIyGutAWGNmYMtciGslXOQ$mP27AwBn5MFdp0EmrjLFB/MCHOeTa1fcDC+qlpPJ4Xk');
+INSERT INTO `equipment_inventory`.`employee` (`user_id`, `university_id`, `pin`, `username`, `password`) VALUES (12, '987654-9876', '$argon2i$v=19$m=65536,t=4,p=1$Qakz+ooMLmoUAiUNpX4LBA$p3AGs9mONRkRxncaGs+QPGlnhQ8aAh464tD/LYQn/S0', 'test9876', '$argon2i$v=19$m=65536,t=4,p=1$Qakz+ooMLmoUAiUNpX4LBA$p3AGs9mONRkRxncaGs+QPGlnhQ8aAh464tD/LYQn/S0');
 
 COMMIT;
 
