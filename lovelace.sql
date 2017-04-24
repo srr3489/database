@@ -321,18 +321,18 @@ GRANT ALL ON equipment_inventory.* TO 'equipment_admin'@'localhost';
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `equipment_inventory`;
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (1, 'BEG3288', 'Bruno', 'Wooten', '54286-6638');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (2, 'BWW6950', 'William', 'Prince', '83968-4833');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (3, 'WMP8401', 'a', 'a', '58431-0614');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (4, 'PNH6074', 'a', 'a', '75321-6766');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (5, 'SGB7736', 'a', 'a', '43421-8849');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (6, 'TSM2885', 'a', 'a', '66445-3805');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (7, 'ACO6530', 'a', 'a', '78804-3278');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (8, 'AFV6160', 'a', 'a', '68312-0186');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (9, 'LFJ1173', 'a', 'a', '14052-4189');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (10, 'LTF4558', 'a', 'a','215010-9722');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (11, 'PRP2986', 'a', 'a','123456-1234');
-INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (12, 'BJM4477', 'a', 'a', '987654-9876');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (1, 'BEG3288', 'Barclay', 'Garner', '54286-6638');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (2, 'BWW6950', 'Bruno', 'Wooten', '83968-4833');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (3, 'WMP8401', 'William', 'Prince', '58431-0614');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (4, 'PNH6074', 'Phelan', 'Hopkins', '75321-6766');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (5, 'SGB7736', 'Summer', 'Boone', '43421-8849');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (6, 'TSM2885', 'Theodore', 'Mayo', '66445-3805');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (7, 'ACO6530', 'Amber', 'Osborn', '78804-3278');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (8, 'AFV6160', 'Avram', 'Vinson', '68312-0186');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (9, 'LFJ1173', 'Lawrence', 'Joseph', '14052-4189');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (10, 'LTF4558', 'Kristen', 'Frederick','215010-9722');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (11, 'PRP2986', 'Patrick', 'Putnam','123456-1234');
+INSERT INTO `equipment_inventory`.`user` (`user_id`, `user_dce`, `first_name`, `last_name`, `university_id`) VALUES (12, 'BJM4477', 'Brendan', 'McDonald', '987654-9876');
 
 COMMIT;
 
