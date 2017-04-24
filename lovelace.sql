@@ -119,6 +119,7 @@ CREATE TABLE IF NOT EXISTS `equipment_inventory`.`item` (
   `archetype_id` INT NULL,
   `barcode` VARCHAR(60) NULL,
   `rit_barcode` VARCHAR(60) NULL,
+  `serial_number` VARCHAR(60) NULL,
   `status` CHAR(1) NULL,
   `status_start` DATETIME NULL,
   `status_stop` DATETIME NULL,
