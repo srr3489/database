@@ -51,9 +51,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `equipment_inventory`.`role` ;
 
 CREATE TABLE IF NOT EXISTS `equipment_inventory`.`role` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
-  `status` CHAR(1) NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `display_name` VARCHAR(45) NOT NULL,
+  `status` CHAR(1) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -342,10 +343,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `equipment_inventory`;
-INSERT INTO `equipment_inventory`.`role` (`id`, `name`, `status`) VALUES (1, 'student', 'A');
-INSERT INTO `equipment_inventory`.`role` (`id`, `name`, `status`) VALUES (2, 'faculty', 'A');
-INSERT INTO `equipment_inventory`.`role` (`id`, `name`, `status`) VALUES (3, 'lab_assistant', 'A');
-INSERT INTO `equipment_inventory`.`role` (`id`, `name`, `status`) VALUES (4, 'admin', 'A');
+INSERT INTO `equipment_inventory`.`role` (`id`, `name`, `display_name`, `status`) VALUES (1, 'ROLE_STUDENT', 'Student', 'A');
+INSERT INTO `equipment_inventory`.`role` (`id`, `name`, `display_name`, `status`) VALUES (2, 'ROLE_FACULTY', 'Faculty', 'A');
+INSERT INTO `equipment_inventory`.`role` (`id`, `name`, `display_name`, `status`) VALUES (3, 'ROLE_LAB_ASSISTANT', 'Lab Assistant', 'A');
+INSERT INTO `equipment_inventory`.`role` (`id`, `name`, `display_name`, `status`) VALUES (4, 'ROLE_ADMIN', 'Admin', 'A');
 
 COMMIT;
 
