@@ -8,7 +8,10 @@ DROP DATABASE IF EXISTS  `equipment_inventory`;
 CREATE DATABASE `equipment_inventory`;
 USE `equipment_inventory`;
 
-DROP USER IF EXISTS 'equipment_admin'@'localhost';
+# Ensure the user account exists before dropping it - MySQL in 5.5 doesn't
+# support IF EXISTS on a DROP USER
+GRANT USAGE ON *.* TO 'equipment_admin'@'localhost' IDENTIFIED BY 'password';
+DROP USER 'equipment_admin'@'localhost';
 
 # TEMP PASSWORD - MIGRATE TO SECURE SOLUTION
 CREATE USER 'equipment_admin'@'localhost' IDENTIFIED BY 'uO(W1R~W]r7,M7l7';
