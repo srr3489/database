@@ -366,8 +366,8 @@ INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `
 INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (8, 3, 'A', '2017-01-12 08:00:00', NULL);
 INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (9, 1, 'A', '2017-01-06 08:00:00', NULL);
 INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (10, 1, 'A', '2017-01-06 08:00:00', NULL);
-INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (11, 3, 'A', '2017-01-06 08:00:00', NULL);
-INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (11, 4, 'A', '2017-01-06 08:00:00', NULL);
+INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (11, 3, 'I', '2017-01-06 08:00:00', '2017-01-24 08:00:00');
+INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (11, 4, 'A', '2017-01-24 08:00:00', NULL);
 INSERT INTO `equipment_inventory`.`user_role` (`user_id`, `role_id`, `status`, `status_start`, `status_stop`) VALUES (12, 3, 'A', '2017-01-06 08:00:00', NULL);
 
 COMMIT;
