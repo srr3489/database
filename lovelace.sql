@@ -122,7 +122,6 @@ CREATE TABLE IF NOT EXISTS `equipment_inventory`.`item_archetype` (
   `description` VARCHAR(100) NULL,
   `manufacturer` VARCHAR(45) NULL,
   `image_path` VARCHAR(45) NULL,
-  `long_term` INT(1) NULL,
   PRIMARY KEY (`item_archetype_id`),
   INDEX `category_id_idx` (`category_id` ASC),
   CONSTRAINT `category_id`
@@ -410,10 +409,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `equipment_inventory`;
-INSERT INTO `equipment_inventory`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`, `image_path`, `long_term`) VALUES (1, 1, 'iphone', 'an apple iphone 6s', 'apple', NULL, 1);
-INSERT INTO `equipment_inventory`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`, `image_path`, `long_term`) VALUES (2, 1, 'android', 'galaxy note 7', 'samsung', NULL, 1);
-INSERT INTO `equipment_inventory`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`, `image_path`, `long_term`) VALUES (3, 3, 'ipad', 'ipad 2', 'apple', NULL, 2);
-INSERT INTO `equipment_inventory`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`, `image_path`, `long_term`) VALUES (4, 2, 'MAC adapter', 'adapter for macbooks to go from hdmi to dvi', 'apple', NULL, 2);
+INSERT INTO `equipment_inventory`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`, `image_path`) VALUES (1, 1, 'iphone', 'an apple iphone 6s', 'apple', NULL);
+INSERT INTO `equipment_inventory`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`, `image_path`) VALUES (2, 1, 'android', 'galaxy note 7', 'samsung', NULL);
+INSERT INTO `equipment_inventory`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`, `image_path`) VALUES (3, 3, 'ipad', 'ipad 2', 'apple', NULL);
+INSERT INTO `equipment_inventory`.`item_archetype` (`item_archetype_id`, `category_id`, `name`, `description`, `manufacturer`, `image_path`) VALUES (4, 2, 'MAC adapter', 'adapter for macbooks to go from hdmi to dvi', 'apple', NULL);
 
 COMMIT;
 
