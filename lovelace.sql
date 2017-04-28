@@ -94,7 +94,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `equipment_inventory`.`category` ;
 
 CREATE TABLE IF NOT EXISTS `equipment_inventory`.`category` (
-  `category_id` INT NOT NULL,
+  `category_id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `parent_id` INT NULL,
   `status` CHAR(1) NULL,
@@ -116,7 +116,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `equipment_inventory`.`item_archetype` ;
 
 CREATE TABLE IF NOT EXISTS `equipment_inventory`.`item_archetype` (
-  `item_archetype_id` INT NOT NULL,
+  `item_archetype_id` INT NOT NULL AUTO_INCREMENT,
   `category_id` INT NULL,
   `name` VARCHAR(45) NULL,
   `description` VARCHAR(100) NULL,
@@ -138,7 +138,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `equipment_inventory`.`item` ;
 
 CREATE TABLE IF NOT EXISTS `equipment_inventory`.`item` (
-  `item_id` INT NOT NULL,
+  `item_id` INT NOT NULL AUTO_INCREMENT,
   `archetype_id` INT NULL,
   `barcode` VARCHAR(60) NULL,
   `rit_barcode` VARCHAR(60) NULL,
@@ -204,7 +204,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `equipment_inventory`.`item_attribute_type` ;
 
 CREATE TABLE IF NOT EXISTS `equipment_inventory`.`item_attribute_type` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `type` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -216,7 +216,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `equipment_inventory`.`item_attribute` ;
 
 CREATE TABLE IF NOT EXISTS `equipment_inventory`.`item_attribute` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `item_attribute_item_id` INT NULL,
   `item_attribute_type_id` INT NULL,
   `value` VARCHAR(45) NULL,
@@ -242,7 +242,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `equipment_inventory`.`item_archetype_attribute` ;
 
 CREATE TABLE IF NOT EXISTS `equipment_inventory`.`item_archetype_attribute` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `item_archetype_id` INT NULL,
   `item_attribute_type_id` INT NULL,
   `value` VARCHAR(45) NULL,
@@ -286,7 +286,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `equipment_inventory`.`document_type` ;
 
 CREATE TABLE IF NOT EXISTS `equipment_inventory`.`document_type` (
-  `document_type_id` INT NOT NULL,
+  `document_type_id` INT NOT NULL AUTO_INCREMENT,
   `document_name` VARCHAR(45) NULL,
   `template` BLOB NULL,
   PRIMARY KEY (`document_type_id`))
