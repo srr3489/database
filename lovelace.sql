@@ -583,3 +583,89 @@ LEFT JOIN
 LEFT JOIN
         item_attribute_type iata
         ON iaa.item_attribute_type_id = iata.id;
+
+CREATE VIEW user_details AS
+SELECT
+        u.user_id,
+        u.user_dce,
+        u.university_id,
+        u.first_name,
+        u.last_name,
+        m.major,
+        r.id role_id,
+        r.name role_name,
+        r.display_name role_display_name
+FROM
+        user u,
+        major m,
+        user_role ur,
+        role r
+WHERE
+        u.major_id = m.id
+        AND u.user_id = ur.user_id
+        AND ur.role_id = r.id
+        AND ur.status = 'A';
+
+CREATE VIEW checkout_log_details AS
+SELECT
+        cl.checkout_id,
+
+        id.item_id,
+        id.archetype_id,
+        id.barcode,
+        id.rit_barcode,
+        id.status,
+        id.name,
+        id.manufacturer,
+        id.description,
+        id.category,
+        id.is_checked_out,
+        id.attribute_type,
+        id.attribute_value,
+
+        u_cob.user_id cob_user_id,
+        u_cob.user_dce cob_user_dce,
+        u_cob.university_id cob_university_id,
+        u_cob.first_name cob_first_name,
+        u_cob.last_name cob_last_name,
+        u_cob.major cob_major,
+        u_cob.role_id cob_role_id,
+        u_cob.role_name cob_role_name,
+        u_cob.role_display_name cob_role_display_name,
+
+        u_cot.user_id cot_user_id,
+        u_cot.user_dce cot_user_dce,
+        u_cot.university_id cot_university_id,
+        u_cot.first_name cot_first_name,
+        u_cot.last_name cot_last_name,
+        u_cot.major cot_major,
+        u_cot.role_id cot_role_id,
+        u_cot.role_name cot_role_name,
+        u_cot.role_display_name cot_role_display_name,
+
+        u_cib.user_id cib_user_id,
+        u_cib.user_dce cib_user_dce,
+        u_cib.university_id cib_university_id,
+        u_cib.first_name cib_first_name,
+        u_cib.last_name cib_last_name,
+        u_cib.major cib_major,
+        u_cib.role_id cib_role_id,
+        u_cib.role_name cib_role_name,
+        u_cib.role_display_name cib_role_display_name,
+
+        cl.checked_out,
+        cl.returned
+FROM
+        checkout_log cl
+JOIN
+        item_details id
+        ON cl.item_id = id.item_id
+JOIN
+        user_details u_cob -- user_checked_out_by
+        ON cl.checked_out_by_id = u_cob.user_id
+JOIN
+        user_details u_cot -- user_checked_out_to
+        ON cl.checked_out_to_id = u_cot.user_id
+LEFT JOIN
+        user_details u_cib -- user_checked_in_by
+        ON cl.checked_in_by_id = u_cib.user_id;
