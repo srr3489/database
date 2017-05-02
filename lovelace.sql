@@ -425,11 +425,9 @@ USE `equipment_inventory`;
 INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (2, 1, '12345-6789', NULL, 'A', '2017-03-19 02:34:34', NULL);
 INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (5, 3, '23422-3454', NULL, 'A', '2017-03-16 04:12:12', NULL);
 INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (57, 3, '23231-3453', NULL, 'A', '2017-03-19 01:21:34', '2017-03-21 04:00:00 ');
-INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (73, 4, '54642-2345', NULL, 'I', '2017-03-10 12:04:04 ', NULL);
+INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (73, 4, '54642-2345', NULL, 'A', '2017-03-10 12:04:04 ', NULL);
 INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (1, 2, '67575-3454', NULL, 'I', '2017-03-08 02:34:34', '2017-03-21 05:00:00');
 INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (98, 2, '43534-2223', NULL, 'A', '2017-03-10 10:03:11', NULL);
-INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (23, 5, '13536-2345', '99322-2342', 'I', '2017-03-10 02:34:34', '2017-03-21 04:00:00');
-INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (65, 5, '54642-6573', '99322-2333', 'A', '2017-03-07 09:33:31', NULL);
 INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (22, 3, '23222-1111', NULL, 'A', '2017-03-06 09:02:03', NULL);
 INSERT INTO `equipment_inventory`.`item` (`item_id`, `archetype_id`, `barcode`, `rit_barcode`, `status`, `status_start`, `status_stop`) VALUES (44, 3, '23423-2343', NULL, 'A', '2017-03-07 02:11:24', NULL);
 
@@ -445,7 +443,7 @@ INSERT INTO `equipment_inventory`.`checkout_log` (`checkout_id`, `item_id`, `che
 INSERT INTO `equipment_inventory`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (2, 98, 2, 5, 8, '2017-03-18 10:34:23', '2017-03-18 12:52:23');
 INSERT INTO `equipment_inventory`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (3, 5, 7, 8, NULL, '2017-03-19 01:34:23', NULL);
 INSERT INTO `equipment_inventory`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (4, 73, 2, 8, 5, '2017-03-19 02:34:23', '2017-03-19 3:11:54');
-INSERT INTO `equipment_inventory`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (5, 65, 7, 8, NULL, '2017-03-21 03:12:11', NULL);
+INSERT INTO `equipment_inventory`.`checkout_log` (`checkout_id`, `item_id`, `checked_out_to_id`, `checked_out_by_id`, `checked_in_by_id`, `checked_out`, `returned`) VALUES (5, 73, 7, 8, NULL, '2017-03-21 03:12:11', NULL);
 
 COMMIT;
 
@@ -455,7 +453,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `equipment_inventory`;
-INSERT INTO `equipment_inventory`.`item_attribute_type` (`id`, `type`) VALUES (1, 'type1');
+INSERT INTO `equipment_inventory`.`item_attribute_type` (`id`, `type`) VALUES (1, 'Long term');
 INSERT INTO `equipment_inventory`.`item_attribute_type` (`id`, `type`) VALUES (2, 'type2');
 INSERT INTO `equipment_inventory`.`item_attribute_type` (`id`, `type`) VALUES (3, 'type3');
 
@@ -467,10 +465,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `equipment_inventory`;
-INSERT INTO `equipment_inventory`.`item_attribute` (`id`, `item_attribute_item_id`, `item_attribute_type_id`, `value`) VALUES (1, 2, 1, 'value1');
-INSERT INTO `equipment_inventory`.`item_attribute` (`id`, `item_attribute_item_id`, `item_attribute_type_id`, `value`) VALUES (2, 57, 2, 'value1');
+INSERT INTO `equipment_inventory`.`item_attribute` (`id`, `item_attribute_item_id`, `item_attribute_type_id`, `value`) VALUES (1, 5, 1, NULL);
+INSERT INTO `equipment_inventory`.`item_attribute` (`id`, `item_attribute_item_id`, `item_attribute_type_id`, `value`) VALUES (2, 73, 2, 'value1');
 INSERT INTO `equipment_inventory`.`item_attribute` (`id`, `item_attribute_item_id`, `item_attribute_type_id`, `value`) VALUES (3, 73, 3, 'value1');
-INSERT INTO `equipment_inventory`.`item_attribute` (`id`, `item_attribute_item_id`, `item_attribute_type_id`, `value`) VALUES (4, 44, 2, 'value3');
 
 COMMIT;
 
@@ -480,10 +477,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `equipment_inventory`;
-INSERT INTO `equipment_inventory`.`item_archetype_attribute` (`id`, `item_archetype_id`, `item_attribute_type_id`, `value`) VALUES (1, 1, 2, 'value1');
-INSERT INTO `equipment_inventory`.`item_archetype_attribute` (`id`, `item_archetype_id`, `item_attribute_type_id`, `value`) VALUES (2, 2, 3, 'value2');
-INSERT INTO `equipment_inventory`.`item_archetype_attribute` (`id`, `item_archetype_id`, `item_attribute_type_id`, `value`) VALUES (3, 1, 1, 'value3');
-INSERT INTO `equipment_inventory`.`item_archetype_attribute` (`id`, `item_archetype_id`, `item_attribute_type_id`, `value`) VALUES (4, 1, 2, 'value4');
+INSERT INTO `equipment_inventory`.`item_archetype_attribute` (`id`, `item_archetype_id`, `item_attribute_type_id`, `value`) VALUES (1, 1, 1, NULL);
+INSERT INTO `equipment_inventory`.`item_archetype_attribute` (`id`, `item_archetype_id`, `item_attribute_type_id`, `value`) VALUES (2, 1, 2, 'An attribute');
+INSERT INTO `equipment_inventory`.`item_archetype_attribute` (`id`, `item_archetype_id`, `item_attribute_type_id`, `value`) VALUES (3, 3, 3, 'A different attribute');
+INSERT INTO `equipment_inventory`.`item_archetype_attribute` (`id`, `item_archetype_id`, `item_attribute_type_id`, `value`) VALUES (4, 5, 2, 'Some other attribute');
 
 COMMIT;
 
@@ -543,3 +540,33 @@ COMMIT;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+CREATE VIEW item_details AS
+SELECT
+        i.item_id,
+        i.archetype_id,
+        i.barcode,
+        i.rit_barcode,
+        i.status,
+        iar.name,
+        iar.manufacturer,
+        iar.description,
+        coalesce(iat.type, iata.type) attribute_type,
+        coalesce(iatr.value, iaa.value) attribute_value
+FROM
+        item i
+JOIN
+        item_archetype iar
+        ON i.archetype_id = iar.item_archetype_id
+LEFT JOIN
+        item_attribute iatr
+        ON i.item_id = iatr.item_attribute_item_id
+LEFT JOIN
+        item_archetype_attribute iaa
+        ON iar.item_archetype_id = iaa.item_archetype_id
+LEFT JOIN
+        item_attribute_type iat
+        ON iatr.item_attribute_type_id = iat.id
+LEFT JOIN
+        item_attribute_type iata
+        ON iaa.item_attribute_type_id = iata.id;
