@@ -551,13 +551,26 @@ SELECT
         iar.name,
         iar.manufacturer,
         iar.description,
+        c.name category,
         coalesce(iat.type, iata.type) attribute_type,
-        coalesce(iatr.value, iaa.value) attribute_value
+        coalesce(iatr.value, iaa.value) attribute_value,
+        EXISTS(
+            select
+                  'x'
+            from
+                  checkout_log cl
+            where
+                  i.item_id = cl.item_id
+                  and cl.returned is null
+        ) is_checked_out
 FROM
         item i
 JOIN
         item_archetype iar
         ON i.archetype_id = iar.item_archetype_id
+JOIN
+        category c
+        ON iar.category_id = c.category_id
 LEFT JOIN
         item_attribute iatr
         ON i.item_id = iatr.item_attribute_item_id
